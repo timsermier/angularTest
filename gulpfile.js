@@ -38,6 +38,11 @@ function watch(done) {
   done();
 }
 
+gulp.task('set-dist', function (done) {
+   process.env.DIST = true;
+   done();
+ });
+
 var deploy = require('gulp-deploy-git');
 gulp.task('deploy', function() {
   return gulp.src('**/*',  { read: false, cwd: 'dist'  })

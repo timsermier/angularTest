@@ -20,8 +20,10 @@ function inject() {
     ignorePath: [conf.paths.src, conf.paths.tmp],
     addRootSlash: false
   };
-
-  return gulp.src(conf.path.src('index.html'))
+  
+	var preprocess = require('gulp-preprocess');
+    return gulp.src(conf.path.src('index.html'))
+	.pipe(preprocess())
     .pipe(gulpInject(injectStyles, injectOptions))
     .pipe(gulpInject(injectScripts, injectOptions))
     .pipe(wiredep(Object.assign({}, conf.wiredep)))
