@@ -37,3 +37,12 @@ function watch(done) {
   gulp.watch(conf.path.src('**/*.js'), gulp.series('inject'));
   done();
 }
+
+var deploy = require('gulp-deploy-git');
+gulp.task('deploy', function() {
+  return gulp.src('**/*',  { read: false, cwd: 'dist'  })
+    .pipe(deploy({
+      repository: 'https://github.com/timsermier/angularTest.git',
+      remoteBranch:   'gh-pages'
+    }))
+});
